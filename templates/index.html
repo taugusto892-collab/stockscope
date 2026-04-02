@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}StockScope — Análise de Ações 2025{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4 py-4">
+
+    <!-- Hero -->
+    <div class="text-center mb-4">
+        <h1 class="display-6 fw-bold mb-1">
+            Análise de Performance <span class="text-success">2025</span>
+        </h1>
+        <p class="text-secondary mb-0">
+            Petrobras (PETR4.SA) vs Vale (VALE3.SA) — retorno acumulado ao longo do ano
+        </p>
+    </div>
+
+    <!-- Loading -->
+    <div id="compare-loading" class="text-center py-5">
+        <div class="spinner-border text-success" role="status" style="width:2.5rem;height:2.5rem"></div>
+        <p class="text-secondary mt-3 small">Carregando dados de 2025...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="compare-error" class="alert alert-danger" style="display:none"></div>
+
+    <!-- Conteúdo principal -->
+    <div id="compare-section" style="display:none">
+
+        <!-- Cards de resumo -->
+        <div class="row g-3 mb-3" id="summary-cards"></div>
+
+        <!-- Gráfico de comparação -->
+        <div class="card border-secondary mb-4">
+            <div class="card-body p-2">
+                <div id="compare-chart" style="height:430px"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Divisor -->
+    <hr class="border-secondary my-4">
+
+    <!-- Busca -->
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-6">
+            <h5 class="text-center mb-3 text-secondary fw-normal">Buscar qualquer ativo</h5>
+            <div class="input-group">
+                <input type="text" class="form-control bg-dark border-secondary text-light"
+                       id="main-search"
+                       placeholder="Digite o ticker (ex: AAPL, BBDC4.SA, WEGE3.SA)">
+                <button class="btn btn-success" id="main-search-btn">Analisar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exemplos rápidos -->
+    <div class="text-center">
+        <span class="text-secondary small me-2">Exemplos:</span>
+        {% for ticker in ['PETR4.SA', 'VALE3.SA', 'ITUB4.SA', 'BBDC4.SA', 'WEGE3.SA', 'AAPL', 'MSFT', 'NVDA'] %}
+        <a href="/stock/{{ ticker }}"
+           class="badge bg-secondary text-decoration-none me-1 mb-1 px-2 py-1 ticker-badge">
+            {{ ticker }}
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

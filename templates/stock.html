@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}{{ ticker }} — StockScope{% endblock %}
+
+{% block content %}
+<div id="app" data-ticker="{{ ticker }}" class="container-fluid px-4 py-3">
+
+    <!-- Loading -->
+    <div id="stock-loading" class="text-center py-5">
+        <div class="spinner-border text-success mb-3" role="status"
+             style="width:2.5rem;height:2.5rem"></div>
+        <p class="text-secondary">Carregando dados de <strong>{{ ticker }}</strong>...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="stock-error" class="alert alert-danger mt-3" style="display:none"></div>
+
+    <!-- Conteúdo (oculto até carregar) -->
+    <div id="stock-content" style="display:none">
+
+        <!-- Cabeçalho -->
+        <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+            <h2 class="mb-0 fw-bold" id="s-ticker">{{ ticker }}</h2>
+            <span id="s-name" class="text-secondary fs-5"></span>
+            <span id="s-exchange" class="badge bg-secondary"></span>
+            <span id="s-currency" class="badge border border-secondary text-secondary"></span>
+            <span id="s-lastdate" class="text-secondary small ms-auto"></span>
+        </div>
+
+        <!-- Badges de performance -->
+        <div class="d-flex flex-wrap gap-2 mb-3" id="perf-bar"></div>
+
+        <!-- Cards de métricas -->
+        <div class="row g-2 mb-3">
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Preço Atual</div>
+                        <div class="fw-bold fs-4" id="m-price">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Market Cap</div>
+                        <div class="fw-bold" id="m-mktcap">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">P/L (P/E)</div>
+                        <div class="fw-bold" id="m-pe">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Volume</div>
+                        <div class="fw-bold" id="m-volume">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Máx 52 Semanas</div>
+                        <div class="fw-bold text-success" id="m-52h">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Mín 52 Semanas</div>
+                        <div class="fw-bold text-danger" id="m-52l">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Dividend Yield</div>
+                        <div class="fw-bold" id="m-div">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-secondary h-100">
+                    <div class="card-body py-2 px-3">
+                        <div class="small text-secondary">Beta</div>
+                        <div class="fw-bold" id="m-beta">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de preço (candlestick + SMAs) -->
+        <div class="card border-secondary mb-2">
+            <div class="card-body p-2">
+                <div id="price-chart" style="height:460px"></div>
+            </div>
+        </div>
+
+        <!-- Gráfico de volume -->
+        <div class="card border-secondary">
+            <div class="card-body p-2">
+                <div id="volume-chart" style="height:160px"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
