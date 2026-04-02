@@ -32,3 +32,29 @@ The app has three backend modules with clear responsibilities:
 - Comparison endpoint defaults to `PETR4.SA,VALE3.SA` and accepts `?tickers=T1,T2` query param.
 - All tickers are `.upper()`-ed at the route level before processing.
 - No caching — every request calls yfinance live.
+
+## GitHub Repository
+
+Repository: https://github.com/taugusto892-collab/stockscope  
+Remote: `origin` (HTTPS, authenticated via GitHub CLI)  
+Default branch: `master`
+
+## Auto-sync to GitHub (MANDATORY)
+
+**After every file change in this project, you MUST:**
+
+1. Stage all modified files: `git add <changed files>`
+2. Commit with a descriptive message
+3. Push to GitHub: `git push origin master`
+
+Use the `gh` CLI located at `C:\Program Files\GitHub CLI\gh.exe` if needed.  
+Always use the full path `/c/Program Files/GitHub CLI/gh.exe` in bash.
+
+The commit message format:
+```
+<short description of what changed>
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+```
+
+Do this automatically without asking for confirmation — syncing to GitHub is always authorized for this project.
